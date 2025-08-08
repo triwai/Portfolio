@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Triwai — Darkside Portfolio</title>
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<!-- 背景：パーティクル（星屑/知性の断片） -->
+<canvas id="bg-particles" aria-hidden="true"></canvas>
+
+<!-- シネマティックイントロ（ホログラフィック“TRIWAI”） -->
+<div class="intro" aria-hidden="true">
+    <div class="intro__vignette"></div>
+    <div class="intro__scan"></div>
+    <div class="intro__logo">
+        <span class="holo-logo" aria-label="TRIWAI">TRIWAI</span>
+        <p class="intro__tag">programmer • intelligence • dark elegance</p>
+    </div>
+</div>
+
+<!-- ナビゲーション -->
+<header class="nav">
+    <a class="brand" href="#top" aria-label="Triwai Home">
+        <span>TRIWAI</span>
+    </a>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <button class="btn-outline" id="toggleNoise" aria-pressed="false">Noise</button>
+    </nav>
+</header>
+
+<!-- ヒーロー（アバターなし・中央寄せ） -->
+<main id="top" class="hero container hero--center">
+    <h1 class="hero__title-xl holo-display holo-noise">Triwai</h1>
+    <p class="hero__lead refined">
+        静かな力学で、体験に“知性”を。<br />
+        余白と速度、そして精度で仕上げるモノクロームの設計。
+    </p>
+    <div class="hero__cta">
+        <a class="btn-primary" href="#about">Explore</a>
+        <a class="btn-ghost" href="#contact">Collaborate</a>
+    </div>
+</main>
+
+<!-- About -->
+<section id="about" class="section container">
+    <div class="section__head">
+        <h2 class="section__title">About</h2>
+        <p class="section__desc">Less noise. More signal.</p>
+    </div>
+    <div class="grid two">
+        <article class="card glass reveal">
+            <h3>Principles</h3>
+            <p>
+                本質を抽出し、摩擦を削る。判断の速さと、設計の深さ。<br />
+                黒の静けさに、シルバーの精度を添えて。
+            </p>
+        </article>
+        <article class="card glass reveal">
+            <h3>Practice</h3>
+            <p>
+                高速なフロントエンド、堅牢なバックエンド、正確な情報設計。<br />
+                触れて数秒で「賢さ」を感じる体験をつくる。
+            </p>
+        </article>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="section container">
+    <div class="section__head">
+        <h2 class="section__title">Skills</h2>
+        <p class="section__desc">Precision engineering for human interfaces.</p>
+    </div>
+    <div class="grid three">
+        <article class="card neon reveal">
+            <h3>Frontend</h3>
+            <ul>
+                <li>TypeScript / JavaScript</li>
+                <li>React / Next.js / Vite</li>
+                <li>Motion & Micro-interactions</li>
+            </ul>
+        </article>
+        <article class="card neon reveal">
+            <h3>Backend</h3>
+            <ul>
+                <li>Node.js / APIs / Realtime</li>
+                <li>Data modeling / Caching</li>
+                <li>Security by default</li>
+            </ul>
+        </article>
+        <article class="card neon reveal">
+            <h3>Design</h3>
+            <ul>
+                <li>Apple-like minimalism</li>
+                <li>Silver / White / Dark</li>
+                <li>Accessible & Performant</li>
+            </ul>
+        </article>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section container">
+    <div class="section__head">
+        <h2 class="section__title">Contact</h2>
+        <p class="section__desc">If it deserves clarity, let’s build it.</p>
+    </div>
+    <form class="card glass form reveal" onsubmit="event.preventDefault(); alert('Thanks!');">
+        <div class="row">
+            <label>お名前
+                <input type="text" placeholder="Your Name" required />
+            </label>
+            <label>メール
+                <input type="email" placeholder="your@email.example" required />
+            </label>
+        </div>
+        <label>メッセージ
+            <textarea placeholder="What shall we create?" rows="5" required></textarea>
+        </label>
+        <button class="btn-primary" type="submit">Send</button>
+    </form>
+</section>
+
+<!-- フッター（洗練版） -->
+<footer class="footer container">
+    <p class="footer__line">
+        <span class="mono">© <span id="year"></span> Triwai</span>
+        <span class="dot">•</span>
+        <span class="mono">Designed in monochrome, illuminated by intelligence.</span>
+    </p>
+</footer>
+
+<!-- ノイズレイヤー（トグル可能） -->
+<div id="noise" aria-hidden="true"></div>
+
+<script src="./script.js"></script>
+</body>
+</html>
