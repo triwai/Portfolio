@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselTrack.innerHTML = items + items + items;
     }
 
-    // Smooth scroll
+    // Smooth scrollh
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
