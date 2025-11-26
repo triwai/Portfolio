@@ -1,287 +1,290 @@
-// Modern Interactive Elements
+// Ultra-modern Interactive System - BEST PORTFOLIO 2025
 document.addEventListener('DOMContentLoaded', () => {
-    // Set current year
+    // Set year
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Tech carousel duplication for infinite scroll
-    const techTrack = document.getElementById('techTrack');
-    if (techTrack) {
-        const items = techTrack.innerHTML;
-        techTrack.innerHTML = items + items; // Duplicate for seamless loop
+    // Duplicate carousel items for infinite scroll
+    const carouselTrack = document.getElementById('carouselTrack');
+    if (carouselTrack) {
+        const items = carouselTrack.innerHTML;
+        carouselTrack.innerHTML = items + items;
     }
 
-    // Ocean waves canvas animation
-    const canvas = document.getElementById('ocean-waves');
+    // Advanced Particle System
+    const canvas = document.getElementById('particle-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
-        let waves = [];
+        let particles = [];
+        let mouse = { x: 0, y: 0 };
         let animationId;
 
-        function resizeCanvas() {
+        // Resize canvas
+        function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        function createWave(index) {
-            return {
-                amplitude: 30 + Math.random() * 40,
-                frequency: 0.01 + Math.random() * 0.02,
-                speed: 0.001 + Math.random() * 0.002,
-                offset: Math.random() * Math.PI * 2,
-                opacity: 0.05 + Math.random() * 0.1,
-                y: canvas.height * (0.3 + index * 0.15)
-            };
-        }
+        // Particle class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.hue = Math.random() * 60 + 200; // Blue to purple range
+            }
 
-        function initWaves() {
-            waves = [];
-            for (let i = 0; i < 4; i++) {
-                waves.push(createWave(i));
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Mouse interaction
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    const force = (100 - distance) / 100;
+                    this.x -= dx * force * 0.02;
+                    this.y -= dy * force * 0.02;
+                }
+
+                // Wrap around edges
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = `hsl(${this.hue}, 100%, 70%)`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `hsl(${this.hue}, 100%, 70%)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
             }
         }
 
-        function drawWave(wave, time) {
-            ctx.beginPath();
-            ctx.moveTo(0, wave.y);
-
-            for (let x = 0; x <= canvas.width; x++) {
-                const y = wave.y + Math.sin(x * wave.frequency + time * wave.speed + wave.offset) * wave.amplitude;
-                ctx.lineTo(x, y);
+        // Initialize particles
+        function init() {
+            particles = [];
+            const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
             }
-
-            ctx.lineTo(canvas.width, canvas.height);
-            ctx.lineTo(0, canvas.height);
-            ctx.closePath();
-
-            const gradient = ctx.createLinearGradient(0, wave.y - wave.amplitude, 0, canvas.height);
-            gradient.addColorStop(0, `rgba(0, 217, 255, ${wave.opacity})`);
-            gradient.addColorStop(0.5, `rgba(0, 149, 255, ${wave.opacity * 0.5})`);
-            gradient.addColorStop(1, `rgba(0, 53, 102, 0)`);
-
-            ctx.fillStyle = gradient;
-            ctx.fill();
         }
 
+        // Connect particles with lines
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        ctx.save();
+                        ctx.globalAlpha = 0.1 * (1 - distance / 120);
+                        ctx.strokeStyle = '#007AFF';
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+            }
+        }
+
+        // Animation loop
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const time = Date.now();
 
-            waves.forEach(wave => drawWave(wave, time));
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            connectParticles();
             animationId = requestAnimationFrame(animate);
         }
 
-        resizeCanvas();
-        initWaves();
+        // Mouse move handler
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        // Initialize
+        resize();
+        init();
         animate();
 
+        // Handle resize
         window.addEventListener('resize', () => {
-            resizeCanvas();
-            initWaves();
+            resize();
+            init();
         });
     }
 
-    // Particle system
-    const particleContainer = document.getElementById('particles');
-    if (particleContainer) {
-        const particleCount = 50;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.cssText = `
-                position: absolute;
-                width: ${Math.random() * 3 + 1}px;
-                height: ${Math.random() * 3 + 1}px;
-                background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2});
-                border-radius: 50%;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                animation: particleFloat ${Math.random() * 20 + 10}s linear infinite;
-            `;
-            particleContainer.appendChild(particle);
-        }
-    }
-
-    // Add particle float animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes particleFloat {
-            from {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Smooth scroll for navigation
+    // Smooth scroll with easing
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const offset = 80; // Navigation height
+                const offset = 80;
                 const targetPosition = target.offsetTop - offset;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                smoothScroll(targetPosition, 1000);
             }
         });
     });
 
-    // Intersection Observer for animations
+    // Custom smooth scroll function
+    function smoothScroll(target, duration) {
+        const start = window.pageYOffset;
+        const distance = target - start;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = easeInOutCubic(timeElapsed, start, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function easeInOutCubic(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t * t + b;
+            t -= 2;
+            return c / 2 * (t * t * t + 2) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // Navigation transparency on scroll
+    const nav = document.querySelector('.navigation');
+    let lastScrollY = 0;
+
+    function updateNavigation() {
+        const scrollY = window.scrollY;
+
+        if (scrollY > 100) {
+            nav.style.background = 'rgba(0, 0, 0, 0.95)';
+            nav.style.backdropFilter = 'blur(50px) saturate(200%)';
+        } else {
+            nav.style.background = 'rgba(0, 0, 0, 0.8)';
+            nav.style.backdropFilter = 'blur(40px) saturate(180%)';
+        }
+
+        lastScrollY = scrollY;
+    }
+
+    window.addEventListener('scroll', updateNavigation, { passive: true });
+
+    // Intersection Observer for fade-in animations
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '0';
-                entry.target.style.transform = 'translateY(20px)';
-
-                setTimeout(() => {
-                    entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, 100);
-
+                entry.target.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe all cards and sections
-    document.querySelectorAll('.glass-card, .project-card, .skill-category').forEach(el => {
+    // Observe elements
+    document.querySelectorAll('.feature-card, .skill-group, .contact-card').forEach(el => {
+        el.style.opacity = '0';
         observer.observe(el);
     });
 
-    // Navigation scroll effect
-    const nav = document.querySelector('.nav-glass');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 100) {
-            nav.style.background = 'rgba(0, 8, 20, 0.95)';
-            nav.style.backdropFilter = 'blur(24px) saturate(200%)';
-        } else {
-            nav.style.background = 'rgba(0, 8, 20, 0.7)';
-            nav.style.backdropFilter = 'blur(20px) saturate(180%)';
-        }
-
-        lastScroll = currentScroll;
-    });
-
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            // For now, just adds a visual feedback
-            themeToggle.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                themeToggle.style.transform = 'scale(1)';
-            }, 200);
-        });
-    }
-
-    // Add hover effect for tech items
-    document.querySelectorAll('.tech-icon').forEach(icon => {
-        icon.addEventListener('mouseenter', () => {
-            icon.style.transform = 'translateY(-5px) scale(1.1) rotateZ(5deg)';
+    // Language carousel hover effects
+    document.querySelectorAll('.language-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateY(-10px) rotateX(10deg) rotateY(-5deg) scale(1.05)';
         });
 
-        icon.addEventListener('mouseleave', () => {
-            icon.style.transform = 'translateY(0) scale(1) rotateZ(0)';
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
         });
     });
 
-    // Parallax effect for floating elements
+    // Parallax effect for orbs
     window.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX / window.innerWidth - 0.5;
         const mouseY = e.clientY / window.innerHeight - 0.5;
 
-        const floats = document.querySelectorAll('.float-element');
-        floats.forEach((float, index) => {
-            const speed = (index + 1) * 20;
-            float.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+        document.querySelectorAll('.orb').forEach((orb, index) => {
+            const speed = (index + 1) * 30;
+            orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
         });
     });
 
-    // Add ripple effect on buttons
-    document.querySelectorAll('.btn-primary, .btn-secondary, .contact-link').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            ripple.style.cssText = `
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.5);
-                width: 100px;
-                height: 100px;
-                transform: translate(-50%, -50%) scale(0);
-                animation: rippleEffect 0.6s ease-out;
-                pointer-events: none;
-            `;
+    // Magnetic button effect
+    document.querySelectorAll('.btn-main, .btn-outline').forEach(button => {
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
 
-            const rect = this.getBoundingClientRect();
-            ripple.style.left = `${e.clientX - rect.left}px`;
-            ripple.style.top = `${e.clientY - rect.top}px`;
+            button.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
 
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-
-            setTimeout(() => ripple.remove(), 600);
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translate(0, 0)';
         });
     });
 
-    // Add ripple animation
-    const rippleStyle = document.createElement('style');
-    rippleStyle.textContent = `
-        @keyframes rippleEffect {
-            to {
-                transform: translate(-50%, -50%) scale(4);
-                opacity: 0;
-            }
+    // Performance monitoring
+    let fps = 0;
+    let lastTime = performance.now();
+
+    function measureFPS() {
+        const currentTime = performance.now();
+        fps = Math.round(1000 / (currentTime - lastTime));
+        lastTime = currentTime;
+
+        if (fps < 30) {
+            // Reduce particle count if performance is poor
+            console.warn('Low FPS detected, optimizing...');
         }
-    `;
-    document.head.appendChild(rippleStyle);
 
-    // Performance optimization - Debounce scroll events
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
+        requestAnimationFrame(measureFPS);
     }
 
-    // Optimize scroll performance
-    const optimizedScroll = debounce(() => {
-        // Handle any intensive scroll operations here
-    }, 100);
+    measureFPS();
 
-    window.addEventListener('scroll', optimizedScroll, { passive: true });
+    // Console branding
+    console.log(
+        '%c KIRIKAE PORTFOLIO 2025 ',
+        'background: linear-gradient(135deg, #007AFF, #5856D6); color: white; font-size: 24px; font-weight: bold; padding: 20px; border-radius: 10px;'
+    );
+    console.log(
+        '%c Crafted with precision and passion ',
+        'color: #007AFF; font-size: 14px; font-style: italic;'
+    );
 });
 
-// Console Easter Egg
-console.log('%c Welcome to Kirikae\'s Portfolio! ', 'background: linear-gradient(135deg, #00D9FF, #0095FF); color: white; font-size: 20px; padding: 10px; border-radius: 5px; font-weight: bold;');
-console.log('%c Built with ❤️ and precision engineering ', 'color: #00D9FF; font-size: 14px;');
+// Preload critical resources
+window.addEventListener('load', () => {
+    // Remove loading state
+    document.body.style.opacity = '1';
+
+    // Trigger initial animations
+    document.querySelector('.hero-section').classList.add('loaded');
+});
