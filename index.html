@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,24 +9,18 @@
     <meta name="description" content="Kirikae - C++, C#, JavaScript, Python, IA32など多数の言語を操るフルスタックデベロッパー" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Noto+Sans+JP:wght@100;200;300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&family=Noto+Sans+JP:wght@100;200;300;400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <!-- Quantum Field Background -->
-    <div class="quantum-field" id="quantumField"></div>
-    <canvas id="particle-canvas"></canvas>
-
-    <!-- Holographic Overlay -->
-    <div class="holographic-overlay"></div>
+    <!-- Minimal Background -->
+    <div class="gradient-bg"></div>
 
     <!-- Navigation -->
     <nav class="navigation">
         <div class="nav-wrapper">
             <a class="nav-logo" href="#home">
                 <span class="logo-text">KIRIKAE</span>
-                <span class="logo-pulse"></span>
             </a>
             <div class="nav-items">
                 <a href="#about" class="nav-item">プロフィール</a>
@@ -35,100 +30,94 @@
         </div>
     </nav>
 
+    <!-- Language Showcase - Top Position -->
+    <div class="language-showcase">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">C++</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">C#</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">JS</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">PY</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">ASM</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">RS</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">GO</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">TS</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">JAVA</text>
+                    </svg>
+                </div>
+                <div class="language-icon">
+                    <svg viewBox="0 0 24 24" class="tech-svg">
+                        <text x="50%" y="50%" text-anchor="middle" dy=".35em" class="tech-text">SWIFT</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <div class="hero-wrapper">
-            <div class="hero-badge">
-                <span>フルスタックデベロッパー</span>
-            </div>
-
-            <h1 class="hero-title">
-                <span class="title-main">KIRIKAE</span>
-            </h1>
-
-            <p class="hero-description">
+        <div class="hero-content">
+            <div class="hero-badge">フルスタックデベロッパー</div>
+            <h1 class="hero-title">KIRIKAE</h1>
+            <p class="hero-subtitle">
                 精密なコードで未来を構築する<br/>
                 システムレベルからクラウドまで、あらゆる領域を横断
             </p>
-
-            <!-- Language Carousel -->
-            <div class="language-carousel">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="language-item">
-                        <i class="devicon-cplusplus-plain colored"></i>
-                        <span>C++</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-csharp-plain colored"></i>
-                        <span>C#</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-javascript-plain colored"></i>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-python-plain colored"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="language-item">
-                        <div class="asm-icon">ASM</div>
-                        <span>IA32</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-rust-plain colored"></i>
-                        <span>Rust</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-go-original-wordmark colored"></i>
-                        <span>Go</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-typescript-plain colored"></i>
-                        <span>TypeScript</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-java-plain colored"></i>
-                        <span>Java</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="devicon-swift-plain colored"></i>
-                        <span>Swift</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-cta">
-                <a href="#about" class="btn-main">
-                    <span>詳細を見る</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 17l10-10M17 7v10h-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="#contact" class="btn-outline">
-                    <span>連絡する</span>
-                </a>
+            <div class="hero-actions">
+                <a href="#about" class="btn-primary">詳細を見る</a>
+                <a href="#contact" class="btn-secondary">連絡する</a>
             </div>
         </div>
-
-        <!-- Visual Elements -->
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about-section">
-        <div class="section-container">
+        <div class="container">
             <div class="section-header">
-                <span class="section-tag">PROFILE</span>
+                <span class="section-label">PROFILE</span>
                 <h2 class="section-title">デジタルクラフトマンシップ</h2>
             </div>
 
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="url(#gradient1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1"/>
+                            <path d="M2 8h16M8 2v16" stroke="currentColor" stroke-width="1"/>
                         </svg>
                     </div>
                     <h3>フルスタック開発</h3>
@@ -137,9 +126,9 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="3" stroke="url(#gradient2)" stroke-width="1.5"/>
-                            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1" stroke="url(#gradient2)" stroke-width="1.5" stroke-linecap="round"/>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1"/>
+                            <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3>パフォーマンス最適化</h3>
@@ -148,8 +137,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="url(#gradient3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2L2 7l8 5 8-5-8-5zM2 13l8 5 8-5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <h3>モダンアーキテクチャ</h3>
@@ -161,58 +150,54 @@
 
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
-        <div class="section-container">
+        <div class="container">
             <div class="section-header">
-                <span class="section-tag">SKILLS</span>
+                <span class="section-label">SKILLS</span>
                 <h2 class="section-title">技術スタック</h2>
             </div>
 
-            <div class="skill-categories">
-                <div class="skill-group">
-                    <h3 class="skill-group-title">システム & 低レベル</h3>
-                    <div class="skill-items">
-                        <span class="skill-pill">C++</span>
-                        <span class="skill-pill">C</span>
-                        <span class="skill-pill">Rust</span>
-                        <span class="skill-pill">IA32 Assembly</span>
-                        <span class="skill-pill">LLVM</span>
-                        <span class="skill-pill">システムプログラミング</span>
+            <div class="skill-grid">
+                <div class="skill-category">
+                    <h3>システム & 低レベル</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">IA32 Assembly</span>
+                        <span class="skill-tag">LLVM</span>
                     </div>
                 </div>
 
-                <div class="skill-group">
-                    <h3 class="skill-group-title">バックエンド & API</h3>
-                    <div class="skill-items">
-                        <span class="skill-pill">C# / .NET</span>
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">Go</span>
-                        <span class="skill-pill">Node.js</span>
-                        <span class="skill-pill">GraphQL</span>
-                        <span class="skill-pill">REST API</span>
+                <div class="skill-category">
+                    <h3>バックエンド & API</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">C# / .NET</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">GraphQL</span>
                     </div>
                 </div>
 
-                <div class="skill-group">
-                    <h3 class="skill-group-title">フロントエンド & UI</h3>
-                    <div class="skill-items">
-                        <span class="skill-pill">TypeScript</span>
-                        <span class="skill-pill">React</span>
-                        <span class="skill-pill">Next.js</span>
-                        <span class="skill-pill">Vue.js</span>
-                        <span class="skill-pill">WebAssembly</span>
-                        <span class="skill-pill">Three.js</span>
+                <div class="skill-category">
+                    <h3>フロントエンド & UI</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">WebAssembly</span>
                     </div>
                 </div>
 
-                <div class="skill-group">
-                    <h3 class="skill-group-title">インフラストラクチャ</h3>
-                    <div class="skill-items">
-                        <span class="skill-pill">Docker</span>
-                        <span class="skill-pill">Kubernetes</span>
-                        <span class="skill-pill">AWS</span>
-                        <span class="skill-pill">Azure</span>
-                        <span class="skill-pill">CI/CD</span>
-                        <span class="skill-pill">Terraform</span>
+                <div class="skill-category">
+                    <h3>インフラストラクチャ</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Terraform</span>
                     </div>
                 </div>
             </div>
@@ -221,68 +206,29 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <div class="section-container">
+        <div class="container">
             <div class="section-header">
-                <span class="section-tag">CONTACT</span>
-                <h2 class="section-title">一緒に未来を創造しましょう</h2>
+                <span class="section-label">CONTACT</span>
+                <h2 class="section-title">お問い合わせ</h2>
             </div>
 
-            <div class="contact-wrapper">
-                <p class="contact-description">
-                    革新的なアイデアを現実に変える準備はできています
-                </p>
-
-                <div class="contact-methods">
-                    <a href="mailto:kirikaekili@gmail.com" class="contact-card">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div class="contact-info">
-                            <span class="contact-label">Email</span>
-                            <span class="contact-value">kirikaekili@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <a href="https://github.com/kirikae" class="contact-card">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div class="contact-info">
-                            <span class="contact-label">GitHub</span>
-                            <span class="contact-value">@kirikae</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="contact-content">
+                <p class="contact-text">革新的なアイデアを現実に変える準備はできています</p>
+                <a href="mailto:kirikaekili@gmail.com" class="contact-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="4" width="16" height="12" rx="1" stroke="currentColor" stroke-width="1"/>
+                        <path d="M2 4l8 5 8-5" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                    <span>kirikaekili@gmail.com</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© <span id="year"></span> Kirikae · Crafted with precision and passion</p>
+        <p>© <span id="year"></span> Kirikae · Crafted with precision</p>
     </footer>
-
-    <!-- SVG Definitions -->
-    <svg width="0" height="0">
-        <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#007AFF;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#00C7BE;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#5856D6;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#AF52DE;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#34C759;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#30D158;stop-opacity:1" />
-            </linearGradient>
-        </defs>
-    </svg>
 
     <script src="./script.js"></script>
 </body>
